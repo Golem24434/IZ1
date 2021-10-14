@@ -1,3 +1,6 @@
+#ifndef FUNCTION_H
+#define FUNCTION_H
+
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
@@ -7,6 +10,7 @@
 #define MAX_SIZE_NAME 30 
 #define MAX_SIZE_STRING 40 
 #define SIZE_NUMBER_IN_FILE 3
+#define ERROR 404
 
 typedef struct MusComp MusComp;
 
@@ -18,8 +22,10 @@ struct MusComp {
 
 MusComp *add_in_array(MusComp *ArrayMuCo,int *SizeArray, int *NumberInArray, MusComp ElementMuCo);
 
-void output_info(MusComp *ArrayMuCo, int NumberInArray);
+int output_info(MusComp *ArrayMuCo, int NumberInArray);
 
-void find_random_music_composition(MusComp *ArrayMuCo, int NumberInArray, int CountElement);
+int find_random_music_composition(MusComp *ArrayMuCo, int NumberInArray, int CountElement);
 
 MusComp create_struct_music_composition(char *strin, FILE *fin);
+
+#endif

@@ -1,30 +1,34 @@
-#include <stdio.h>
-#include <malloc.h>
-#include <string.h>
-#include <stdlib.h> 
-#include <time.h>
 #include "function.h"
 
-#define MAX_SIZE_NAME 30 
-#define MAX_SIZE_STRING 40 
-#define SIZE_NUMBER_IN_FILE 3
-
-
 MusComp *add_in_array(MusComp *ArrayMuCo,int *SizeArray, int *NumberInArray, MusComp ElementMuCo)
- {
-	if (*NumberInArray + 1 == *SizeArray) 
+{
+	if ((ArrayMuCo == NULL) || (SizeArray == NULL)) 
+	{
+		printf("Error associated with pointers in function add_in_array()!");
+		return NULL;
+	}
+	if (*NumberInArray + 1 == *SizeArray)	 
 	{
 		(*SizeArray)  *= 2;
 		MusComp	*OldPtrArrayMuCo = ArrayMuCo;
 		ArrayMuCo = (MusComp *) realloc(OldPtrArrayMuCo,(*SizeArray)*sizeof(MusComp));
-		if (ArrayMuCo == NULL) printf("Error associated with Realloc() in function add_in_array!");
+		if (ArrayMuCo == NULL)
+		{
+			printf("Error associated with Realloc() in function add_in_array()!");
+		}
 	}
+
 	ArrayMuCo[*NumberInArray] = ElementMuCo;
 	return ArrayMuCo;
 }
 
-void output_info(MusComp *ArrayMuCo, int NumberInArray)
+int output_info(MusComp *ArrayMuCo, int NumberInArray)
 {
+	if (ArrayMuCo == NULL) 
+	{
+		printf("Error associated with pointers in function output_info()!");
+		return ERROR;
+	}
 	int i = 0;
 	while (i != NumberInArray) 
 	{
@@ -35,8 +39,13 @@ void output_info(MusComp *ArrayMuCo, int NumberInArray)
 	}
 }
 
-void find_random_music_composition(MusComp *ArrayMuCo, int NumberInArray, int CountElement) 
+int find_random_music_composition(MusComp *ArrayMuCo, int NumberInArray, int CountElement) 
 {
+	if (ArrayMuCo == NULL) 
+	{
+		printf("Error associated with pointers in function output_info()!");
+		return ERROR;
+	}
 	int randBit = rand()%5 + 150;
 	int randDuration=rand()%20 + 240;
 	int OutCount = 1;
@@ -57,6 +66,13 @@ void find_random_music_composition(MusComp *ArrayMuCo, int NumberInArray, int Co
 
 MusComp create_struct_music_composition(char *strin, FILE *fin) 
 {
+	if (strin == NULL) 
+	{
+		printf("Error associated with pointers in function output_info()!");
+		MusComp ElementMuCo;
+		ElementMuCo.duration = NULL;
+		return ElementMuCo;
+	}
 	char sbit[SIZE_NUMBER_IN_FILE+1],sduration[SIZE_NUMBER_IN_FILE+1],sname[MAX_SIZE_NAME];
 	MusComp ElementMuCo;
 	strncpy(sbit, &strin[0],SIZE_NUMBER_IN_FILE);
