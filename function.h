@@ -2,7 +2,6 @@
 #define FUNCTION_H
 
 #include <stdio.h>
-#include <malloc.h>
 #include <string.h>
 #include <stdlib.h> 
 #include <time.h>
@@ -12,20 +11,20 @@
 #define SIZE_NUMBER_IN_FILE 3
 #define ERROR 404
 
-typedef struct MusComp MusComp;
+typedef struct mus_comp mus_comp;
 
-struct MusComp {
+struct mus_comp {
 	int bit;
 	int duration;
 	char name[MAX_SIZE_NAME];
 };
 
-MusComp *add_in_array(MusComp *ArrayMuCo,int *SizeArray, int *NumberInArray, MusComp ElementMuCo);
+mus_comp *add_in_array(mus_comp *array_mu_co,int *SizeArray, int *number_in_array, mus_comp element_mu_co);
 
-int output_info(MusComp *ArrayMuCo, int NumberInArray);
+int output_info(mus_comp *array_mu_co, int number_in_array);
 
-int find_random_music_composition(MusComp *ArrayMuCo, int NumberInArray, int CountElement);
+int find_random_music_composition(mus_comp *array_mu_co, int number_in_array, int coun_element);
 
-MusComp create_struct_music_composition(char *strin, FILE *fin);
+mus_comp create_struct_music_composition(char *strin, FILE *fin);
 
 #endif
