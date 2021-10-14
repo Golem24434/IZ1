@@ -1,9 +1,15 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.16)
 
-set(CMAKE_C_STANDARD 99)
+project(test)
 
-add_library(lib STATIC function.c)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}-pthread")
 
-add_executable(output ./DZ1.c)
+set(LIB_SOURCE_FILE function.c)
+add_library(server STATIC ${LIB_SOURCE_FILE})
 
-target_link_libraries(output lib)
+add_compile_options("-lgcov —coverage")
+
+add_executable(main DZ1.c)
+target_link_libraries(main server)

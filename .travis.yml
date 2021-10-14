@@ -3,6 +3,9 @@ sudo:     required  # используем Virtual Machine (а не Docker conta
 
 language: c
 
+os:
+    - linux
+
 branches:
   only:
     - other
@@ -16,6 +19,8 @@ install:
   - sudo apt install cppcheck
 
 script:
-- mkdir ./IZ1 && cd ./IZ1
+- mkdir build
+- cd build
 - cmake ..
-- make clean && make
+- cmake —build .
+- ctest —output-on-failure
