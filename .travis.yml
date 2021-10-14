@@ -3,6 +3,10 @@ sudo:     required  # используем Virtual Machine (а не Docker conta
 
 language: c
 
+branches:
+  only:
+    - other
+
 compiler:
   - gcc
 
